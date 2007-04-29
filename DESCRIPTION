@@ -6,7 +6,7 @@ Version: 0.0.1
 Author: Li Long <li.long@isb-sib.ch>,
    Robert Gentleman <rgentlem@fhcrc.org>, Seth Falcon <sethf@fhcrc.org>
 Maintainer: Li Long <li.long@isb-sib.ch>
-Depends: graph, geneplotter, Rgraphviz, Biobase, fibroEset, hgu95av2
+Depends: graph, geneplotter, Rgraphviz, Biobase, fibroEset, hgu95av2, methods
 License: The Artistic License, Version 2.0
 SaveImage: Yes
 biocViews: GraphsAndNetworks
