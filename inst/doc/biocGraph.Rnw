@@ -1,5 +1,5 @@
-% NOTE -- ONLY EDIT Rgraphviz.Rnw!!!
-% Biobase.tex file will get overwritten.
+% NOTE -- ONLY EDIT biocGraph.Rnw!!!
+% biocGraph.tex file will get overwritten.
 %
 %\VignetteIndexEntry{Examples of plotting graphs Using Rgraphviz}
 %\VignetteDepends{Rgraphviz, graph, Biobase}
@@ -33,7 +33,7 @@ various formats using the \Rpackage{Rgraphviz} package.  To do this,
 let us generate a graph using the \Rpackage{graph} package:
 %
 <<createGraph1, results=hide>>=
-library("Rgraphviz")
+library("biocGraph")
 set.seed(123)
 V <- letters[1:10]
 M <- 1:4
@@ -665,9 +665,9 @@ plot(cG, "twopi", main="twopi")
 <<cGneato, fig=TRUE, include=FALSE, echo=FALSE, results=hide, width=4>>=
 plot(cG, "neato", main="neato")
 @
-\includegraphics[width=0.32\textwidth]{Rgraphviz-cGdot}
-\includegraphics[width=0.32\textwidth]{Rgraphviz-cGtwopi}
-\includegraphics[width=0.32\textwidth]{Rgraphviz-cGneato}
+\includegraphics[width=0.32\textwidth]{biocGraph-cGdot}
+\includegraphics[width=0.32\textwidth]{biocGraph-cGtwopi}
+\includegraphics[width=0.32\textwidth]{biocGraph-cGneato}
 \end{center}
 \caption{\label{fig:cGdot}%
 A cluster graph laid out using the three layout algorithms.}
