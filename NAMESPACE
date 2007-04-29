@@ -2,3 +2,6 @@ importFrom("geneplotter", "imageMap")
 
 import("methods")
 
+export(
+                "imageMap"
+)
