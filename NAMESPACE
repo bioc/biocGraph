@@ -1,0 +1,4 @@
+importFrom("geneplotter", "imageMap")
+
+import("methods")
+

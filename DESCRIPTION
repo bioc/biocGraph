@@ -1,0 +1,12 @@
+Package: biocGraph 
+Title: Graph examples and use cases in Bioinformatics
+Description: This package provides examples and code that make use
+        of the different graph related packages produced by Bioconductor.
+Version: 0.0.1
+Author: Li Long <li.long@isb-sib.ch>,
+   Robert Gentleman <rgentlem@fhcrc.org>, Seth Falcon <sethf@fhcrc.org>
+Maintainer: Li Long <li.long@isb-sib.ch>
+Depends: graph, geneplotter, Rgraphviz, Biobase, fibroEset, hgu95av2
+License: The Artistic License, Version 2.0
+SaveImage: Yes
+biocViews: GraphsAndNetworks
