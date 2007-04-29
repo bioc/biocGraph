@@ -43,7 +43,7 @@
   This function is typically used with the following sequence
   of steps:
   \enumerate{
-    \item Create a graph layout with \code{\link{agopen}}
+    \item Create a graph layout with \code{\link[Rgraphviz::agopen]{agopen}}
     \item Plot it into a bitmap device, e.g. \code{\link{jpeg}}
     or \code{\link{png}}. 
     \item Write HTML header.
@@ -56,7 +56,8 @@
 \value{The function is called for its side effect, which is writing text into
 the connection \code{con}.}
 
-\seealso{\code{\link{agopen}}, \code{\link[prada::openHTMLpage]{openHTMLpage}}}
+\seealso{\code{\link[Rgraphviz::agopen]{agopen}}, 
+  \code{\link[prada::openHTMLpage]{openHTMLpage}}}
 
 \author{Wolfgang Huber \url{http://www.ebi.ac.uk/huber}}
 \keyword{iplot}
