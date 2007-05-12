@@ -8,5 +8,5 @@ Author: Li Long <li.long@isb-sib.ch>,
 Maintainer: Li Long <li.long@isb-sib.ch>
 Depends: graph, geneplotter, Rgraphviz, Biobase, fibroEset, hgu95av2, methods
 License: The Artistic License, Version 2.0
-SaveImage: Yes
+LazyLoad: Yes
 biocViews: GraphsAndNetworks
