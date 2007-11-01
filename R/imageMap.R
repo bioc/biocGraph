@@ -1,5 +1,25 @@
+## We import the generic from geneplotter, which we depend on
 
-## we import the generic from geneplotter, which we depend on
+
+checkTags <- function(x, tagname, nn)
+{
+    if(is.null(names(x))) {
+        if(length(x)==length(nn)) {
+            names(x)=nn
+        } else {
+            stop(paste("'tags$", tagname, "' must have names if ",
+                       "it is not the same length as the number ",
+                       "of nodes in 'object'.", sep=""))
+        }
+    } else {
+        if(!all(names(x) %in% nn))
+            stop(paste("'names(tags$", tagname, ")' must match ",
+                       "the names of the nodes in 'object'",
+                       sep=""))
+    }
+    return(x)
+}
+
 
 setMethod("imageMap",
   signature=signature(object="Ragraph", con="connection", tags="list",
@@ -12,25 +32,8 @@ setMethod("imageMap",
     warning("If par('mai') are not all 0, the result of this function (imageMap) may not be useful.")
 
   nn = sapply(AgNode(object), function(x) x@name)
-
-  checkTags = function(x, tagname) {
-    if(is.null(names(x))) {
-      if(length(x)==length(nn)) {
-        names(x)=nn
-      } else {
-        stop(paste("'tags$", tagname, "' must have names if it is not the ",
-                   "same length as the number of nodes in 'object'.", sep=""))
-      }
-    } else {
-      if(!all(names(x) %in% nn))
-        stop(paste("'names(tags$", tagname, ")' must match the names of ",
-                   "the nodes in 'object'", sep=""))
-    }
-    return(x)
-  }
-
   for(i in seq(along=tags))
-    tags[[i]] = checkTags(tags[[i]], names(tags)[i])
+    tags[[i]] = checkTags(tags[[i]], names(tags)[i], nn)
 
   if( !is.numeric(width) ||  length(width)!=1 )
     stop("'width' must be numeric of length 1.")
@@ -66,4 +69,72 @@ setMethod("imageMap",
   base::writeLines("</MAP>", con)
 } ## end of definition
 ) ## end of setMethod
+
+
+
+
+## FH 10/31/07: Since there was a major overhaul of the Rgraphviz
+## package this method is now much simpler for graph objects.
+## Note that calling renderGraph will return a graph object with the
+## coordinates of the nodes attached in the renderInfo slot;
+## graphRenderInfo(foo, "nativeCoords") should get
+## the coordinates in native caling [0,1], graphRenderInfo(foo, "figDim")
+## gives the dimensions of the device the graph was rendered on.
+## The user can still give width and height of the image file here
+## in which case we will ignore the values in the graph and
+## compute pixel coordinated from the native coordinates. 
+## Margins should be handled ok now already in renderGraph.
+setMethod("imageMap",
+          signature=signature(object="graph", con="connection",
+          tags="list",imgname="character"),
+          definition=function(object, con, tags, imgname,
+          width, height)
+      {
+          missW <- missing(width)
+          missH <- missing(height)
+          if(xor(missW, missH))
+             stop("Need both width and height of the image to compute ",
+                  "coordinates", call.=FALSE)
+
+          ## check for valid tags 
+          nn <- nodes(object)  
+          for(i in seq(along=tags))
+              tags[[i]] = checkTags(tags[[i]], names(tags)[i], nn)
+
+          
+          ## get pixel coordinates from the graph object
+          coords <- graphRenderInfo(object, "nativeCoords")
+          if(is.null(coords))
+              stop("You first need to render this graph object.\n",
+                   "    e.g. foo <- renderGraph(foo)", call.=FALSE)
+          if(missW){
+              width <- graphRenderInfo(object, "figDim")[1]
+              height <- graphRenderInfo(object, "figDim")[2]
+          }else{
+              if( !is.numeric(width) ||  length(width)!=1 )
+                  stop("'width' must be numeric of length 1.")
+              if( !is.numeric(height) || length(height)!=1 )
+                  stop("'height' must be numeric of length 1.")
+          }
+          coords[,c(1,3)] <- apply(coords[,c(1,3)],2,function(x) x*width)
+          coords[,c(2,4)] <- apply(coords[,c(2,4)],2,function(x) x*height)
+          
+          ## build imageMap
+          mapname <- paste("map", gsub(" |/|#|:", "_", imgname), sep="_")
+          base::writeLines(paste("<IMG SRC=\"", imgname, "\" USEMAP=#",
+                                 mapname, " BORDER=0><MAP NAME=\"", mapname,
+                                 "\">", sep=""), con)
+          for(nd in unique(unlist(lapply(tags, names)))) {
+              out <- paste("<AREA SHAPE=\"rect\" COORDS=\"", coords[nd,1], ",",
+              coords[nd,4], ",", coords[nd,3], ",", coords[nd,2], "\"",
+                           sep="")
+              for(i in seq(along=tags))
+                  if(nd %in% names(tags[[i]]))
+                      out = paste(out, " ", names(tags)[i], "=\"",
+                      tags[[i]][nd], "\"", sep="")
+              out <- paste(out, ">", sep="")
+              base::writeLines(out, con)
+          }
+          base::writeLines("</MAP>", con)
+      })
 

@@ -4,12 +4,15 @@
 \alias{imageMap}
 \alias{imageMap-methods}
 \alias{imageMap,Ragraph-method}
+\alias{imageMap,graph-method}
 \alias{imageMap,Ragraph,connection,list,character-method}
+\alias{imageMap,graph,connection,list,character-method}
 
 \title{Write an HTML IMG tag together with a MAP image map.}
 \description{Write an HTML IMG tag together with a MAP image map.}
 \usage{
   \S4method{imageMap}{Ragraph,connection,list,character}(object, con, tags, imgname, width, height, usr = par("usr"))
+\S4method{imageMap}{graph,connection,list,character}(object, con, tags, imgname, width, height)
 }
 \arguments{
   \item{object}{The graph layout for which we want to create an image map.}
@@ -48,6 +51,20 @@
     or \code{\link{png}}. 
     \item Write HTML header.
     \item Call the \code{\link{imageMap}} function.
+    \item Optionally, write further text into the HTML connection.
+    \item Close HTML file.
+  }
+
+  The new API for plotting of graphs now also allows for this
+  alternative procedure:
+  \enumerate{
+    \item Lay out the graph object \code{foo} using
+    \code{\link[Rgraphviz::layoutGraph]{layoutGraph}}
+    \item render the graph on a bitmap device using
+    \code{\link[Rgraphviz::rendderGraph]{renderGraph}} like this:
+    \code{foo <- renderGraph(foo)}
+    \item Write HTML header.
+    \item Call the \code{\link{imageMap}} on the graph object \code{foo}.
     \item Optionally, write further text into the HTML connection.
     \item Close HTML file.
   }
