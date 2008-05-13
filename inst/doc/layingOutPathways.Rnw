@@ -3,7 +3,7 @@
 % Biobase.tex file will get overwritten.
 %
 %\VignetteIndexEntry{HOWTO layout pathways}
-%\VignetteDepends{Rgraphviz, graph, geneplotter, fibroEset, hgu95av2}
+%\VignetteDepends{Rgraphviz, graph, geneplotter, fibroEset, hgu95av2.db}
 %\VignetteKeywords{tools, graphs}
 %\VignettePackage{Rgraphviz}
 
@@ -193,14 +193,14 @@ color nodes based on the level of expression.  By default, this
 function will color nodes blue, green or red, corresponding to
 expression levels of 0-100, 101-500, and 501+ respectively.  Here we
 will use this function along with the \Rpackage{fibroEset} and
-\Rpackage{hgu95av2} data packages and the
+\Rpackage{hgu95av2.db} data packages and the
 \Robject{IMCAAttrs\$IMCALocuLink} data which maps the nodes to their
 LocusLink ID values.
 
 <<expressionGraph, fig=TRUE>>=
 require("geneplotter")
 require("fibroEset")
-require("hgu95av2")
+require("hgu95av2.db")
 data("fibroEset")
 plotExpressionGraph(IMCAGraph, IMCAAttrs$LocusLink,
 exprs(fibroEset)[,1], hgu95av2ENTREZID, attrs=IMCAAttrs$defAttrs,
