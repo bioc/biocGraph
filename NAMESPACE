@@ -1,7 +1,7 @@
-importFrom("geneplotter", "imageMap")
+importClassesFrom("Rgraphviz", "Ragraph")
+importClassesFrom("geneplotter", "connection")
+importClassesFrom("graph", "graph")
+importClassesFrom("methods", "character", "list")
+importMethodsFrom("geneplotter", "imageMap")
 
-import("methods")
-
-export(
-                "imageMap"
-)
+export("imageMap")

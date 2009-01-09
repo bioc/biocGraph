@@ -2,7 +2,7 @@
 % biocGraph.tex file will get overwritten.
 %
 %\VignetteIndexEntry{Examples of plotting graphs Using Rgraphviz}
-%\VignetteDepends{Rgraphviz, graph, Biobase}
+%\VignetteDepends{Rgraphviz, graph}
 %\VignetteKeywords{tools, graphs}
 %\VignettePackage{biocGraph}
 
@@ -949,7 +949,7 @@ close(con)
 
 Finally, we create the graph plot, and the associated HTML image map.
 
-<<makegraph, results=hide>>=  
+<<makegraph, results=hide, eval=FALSE>>=  
 width = 600
 height = 512
 imgname = "graph.png"
