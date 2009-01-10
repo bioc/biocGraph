@@ -169,8 +169,13 @@ itself, and will be laid out as a cluster without any special
 attributes.  Using this subgraph list, we now get:
 
 <<plotSubgraph, fig=TRUE>>=
+if (.Platform$OS.type != "windows") {
 plot(IMCAGraph, attrs=IMCAAttrs$defAttrs,
      nodeAttrs=IMCAAttrs$nodeAttrs, subGList=IMCAAttrs$subGList)
+} else {
+plot(IMCAGraph, attrs=IMCAAttrs$defAttrs,
+     nodeAttrs=IMCAAttrs$nodeAttrs)
+}
 @
 
 While this is still not identical to the image on KEGG (and for most
@@ -202,9 +207,15 @@ require("geneplotter")
 require("fibroEset")
 require("hgu95av2.db")
 data("fibroEset")
+if (.Platform$OS.type != "windows") {
 plotExpressionGraph(IMCAGraph, IMCAAttrs$LocusLink,
 exprs(fibroEset)[,1], hgu95av2ENTREZID, attrs=IMCAAttrs$defAttrs,
 subGList=IMCAAttrs$subGList, nodeAttrs=IMCAAttrs$nodeAttrs)
+} else {
+plotExpressionGraph(IMCAGraph, IMCAAttrs$LocusLink,
+exprs(fibroEset)[,1], hgu95av2ENTREZID, attrs=IMCAAttrs$defAttrs,
+nodeAttrs=IMCAAttrs$nodeAttrs)
+}
 @
 
 One can also simply choose to layout the pathway based on the needs
