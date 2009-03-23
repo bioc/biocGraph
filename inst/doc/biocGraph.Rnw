@@ -21,7 +21,7 @@
  \end{center} \end{figure}
 }
 
-\author{Jeff Gentry, Robert Gentleman, Wolfgang Huber}
+\author{biocGraph authors and maintainer}
 \begin{document}
 \title{How To Plot A Graph Using Rgraphviz}
 \maketitle
