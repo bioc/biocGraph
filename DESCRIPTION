@@ -6,7 +6,7 @@ Version: 1.13.0
 Author: Li Long <li.long@isb-sib.ch>,
    Robert Gentleman <rgentlem@fhcrc.org>, Seth Falcon <sethf@fhcrc.org>
    Florian Hahne <fhahne@fhcrc.org>
-Maintainer: Florian Hahne <fhahne@fhcrc.org>
+Maintainer: Florian Hahne <florian.hahne@novartis.com>
 Depends: Rgraphviz, graph
 Imports: Rgraphviz, geneplotter, graph, methods
 Suggests: fibroEset, geneplotter, hgu95av2.db
