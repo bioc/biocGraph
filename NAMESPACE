@@ -1,5 +1,5 @@
 importClassesFrom("methods", "character", "list")
-importClassesFrom("IRanges", "connection")
+importClassesFrom("BiocGenerics", "connection")
 importClassesFrom("Rgraphviz", "Ragraph")
 importClassesFrom("graph", "graph")
 importMethodsFrom("geneplotter", "imageMap")
