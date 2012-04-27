@@ -12,4 +12,4 @@ Imports: Rgraphviz, geneplotter, graph, BiocGenerics, methods
 Suggests: fibroEset, geneplotter, hgu95av2.db
 License: Artistic-2.0
 LazyLoad: Yes
-biocViews: GraphsAndNetworks
+biocViews: NetworkVisualization, GraphsAndNetworks
