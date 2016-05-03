@@ -2,7 +2,7 @@ Package: biocGraph
 Title: Graph examples and use cases in Bioinformatics
 Description: This package provides examples and code that make use of
         the different graph related packages produced by Bioconductor.
-Version: 1.33.0
+Version: 1.34.0
 Date: 2012-04-27
 Author: Li Long <li.long@isb-sib.ch>, Robert Gentleman
         <rgentlem@fhcrc.org>, Seth Falcon <sethf@fhcrc.org> Florian
